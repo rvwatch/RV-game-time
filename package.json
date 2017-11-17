@@ -1,6 +1,6 @@
 {
-  "name": "game-time-starter-kit-fem1",
-  "version": "1.0.0",
+  "name": "RV-game-time-test",
+  "version": "0.0.1",
   "description": "Starter kit for Turing School's front-end module 1 Game Time project",
   "main": "index.js",
   "scripts": {
@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/turingschool-examples/game-time-starter-kit-FEm1.git"
+    "url": "git+https://git@github.com:rvwatch/game-time-starter-kit-FEm1.git"
   },
-  "author": "Turing School of Software and Design - Robbie Jaeger",
+  "author": "Turing FE - Ricardo Viera",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/turingschool-examples/game-time-starter-kit-FEm1/issues"
