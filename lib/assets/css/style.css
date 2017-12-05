@@ -2,11 +2,30 @@ body {
   overflow: hidden;
 }
 
-
 canvas {
   border: 5px solid blue;
   display: block;
   margin: auto;
 }
 
+.gameButtons {
+  width:600px;
+  text-align: right;
+  margin: auto;
+  position: relative;
+  z-index: 50;
+}
 
+
+button {
+  position: absolute;
+  top: 15px;
+}
+
+.start {
+  right: 100px;
+}
+
+.reset {
+  right: 10px;
+}
