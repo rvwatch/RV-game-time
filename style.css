@@ -3,14 +3,3 @@ canvas {
   border:5px solid green !important;
 }
 
-p {
-  display: inline-block;
-  margin: auto;
-  padding: 0;
-}
-
-div {
-  display: block;
-  flex-direction: row;
-}
-
