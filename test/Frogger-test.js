@@ -11,11 +11,9 @@ const Movers = require('../lib/Movers.js');
 
 describe('Frogger', function() {
   let frogger;
-  let car;
 
   beforeEach(() => {
     frogger = new Frogger();
-    car = new Car();
   })
 
   it('should be a object', () => {
@@ -27,7 +25,7 @@ describe('Frogger', function() {
     assert.equal(frogger.y, 560);
   })
 
-  it('x should increment when we hit right arrow', () =>{
+  it('should move right when we hit right arrow', () =>{
     let event = {
       keyCode: 39
     }
@@ -38,7 +36,7 @@ describe('Frogger', function() {
     assert.equal(frogger.y, 560);
   })
 
-  it('y should increment when we hit down arrow', () => {
+  it('should move down when we hit down arrow', () => {
     let event = {
       keyCode: 40
     }
@@ -49,7 +47,7 @@ describe('Frogger', function() {
     assert.equal(frogger.y, 600);
   })
 
-  it('x should decrement when we hit left arrow', () =>{
+  it('should move left when we hit left arrow', () =>{
     let event = {
       keyCode: 37
     }
@@ -61,7 +59,7 @@ describe('Frogger', function() {
   })
 
 
-  it('y should decrement when we hit up arrow', () => {
+  it('should move up when we hit up arrow', () => {
     let event = {
       keyCode: 38
     }
@@ -84,17 +82,116 @@ describe('Frogger', function() {
     assert.equal(frogger.move(event), null);
     })
 
+  it('should know when it is hit by a car', () => {
+    let car = new Car(280, 480, 40, 40);
+    let cars = []
+    cars.push(car);
+    let event = {
+      keyCode: 38
+    }
+    assert.equal(frogger.x, 280);
+    assert.equal(frogger.y, 560);
+    frogger.move(event);
+    frogger.move(event);
+    assert.equal(frogger.x, 280);
+    assert.equal(frogger.y, 480);
+    assert.equal(frogger.hitByCar(cars), true);
+  })
+
+  it('should know when it is safe', () => {
+    let car = new Car(480, 480, 40, 40);
+    let cars = []
+    cars.push(car);
+    let event = {
+      keyCode: 38
+    }
+    assert.equal(frogger.x, 280);
+    assert.equal(frogger.y, 560);
+    frogger.move(event);
+    frogger.move(event);
+    assert.equal(frogger.x, 280);
+    assert.equal(frogger.y, 480);
+    assert.equal(frogger.hitByCar(cars), false);
+  })
+
+  it('should know when it hops on a log', () => {
+    let log = new Log(280, 280, 80, 40);
+    let logs = []
+    logs.push(log);
+    let event = {
+      keyCode: 38
+    }
+    frogger.x = 280;
+    frogger.y = 320;  // frog on median
+    frogger.move(event);
+    assert.equal(frogger.x, 280);
+    assert.equal(frogger.y, 280); // frog in river
+    assert.equal(frogger.isOnLog(logs), true);
+  })
+
+  it('should know when it hops in the river', () => {
+    let log = new Log(120, 280, 80, 40);
+    let logs = []
+    logs.push(log);
+    let event = {
+      keyCode: 38
+    }
+    frogger.x = 280;
+    frogger.y = 320;  // frog on median
+    frogger.move(event);
+    assert.equal(frogger.x, 280);
+    assert.equal(frogger.y, 280); // frog in river
+    assert.equal(frogger.isOnLog(logs), false);
+  })
+
+  it('should die if it is hit by a car', () => {
+    let log = new Log(120, 280, 80, 40);
+    let logs = []
+    logs.push(log);
+    let car = new Car(280, 480, 40, 40);
+    let cars = []
+    cars.push(car);
+    let event = {
+      keyCode: 38
+    }
+    assert.equal(frogger.x, 280);
+    assert.equal(frogger.y, 560);
+    frogger.move(event);
+    frogger.move(event);
+    assert.equal(frogger.x, 280);
+    assert.equal(frogger.y, 480);
+    assert.equal(frogger.hitByCar(cars), true);
+    frogger.collisionDetection(logs, cars);
+    assert.equal(frogger.alive, false);
+  })
+
+  it('should die if it hops in the river', () => {
+    let car = new Car(480, 480, 40, 40);
+    let cars = []
+    cars.push(car);
+    let log = new Log(120, 280, 80, 40);
+    let logs = []
+    logs.push(log);
+    let event = {
+      keyCode: 38
+    }
+    frogger.x = 280;
+    frogger.y = 320;  // frog on median
+    frogger.move(event);
+    assert.equal(frogger.x, 280);
+    assert.equal(frogger.y, 280); // frog in river
+    assert.equal(frogger.isOnLog(logs), false);
+    frogger.collisionDetection(logs, cars);
+    assert.equal(frogger.alive, false);
+  })
+
+  it('should be able to respawn itself', () => {
+    frogger.x = 280;
+    frogger.y = 320;  // frog on median
+    frogger.respawn();
+    assert.equal(frogger.x, 280);
+    assert.equal(frogger.y, 560);
+  })
+
 })
   
-
-//event object with keycode and give that to move()
-//test every interaction
-//test every key code
-//need to create new frog and new car and with same x, y 
-
-// const canvas = class Canvas {
-//   constructor(){
-//     this.width = 600;
-//     this.height = 680;
-//   }
-// }
