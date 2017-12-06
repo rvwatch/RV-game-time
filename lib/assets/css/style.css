@@ -23,7 +23,12 @@ button {
 }
 
 .start {
-  right: 100px;
+  right: 200px;
+  top: 500px;
+  border: none;
+  font-size: 40px;
+  line-height: 55px;
+  padding: 10px 25px 15px 25px;
 }
 
 .reset {
