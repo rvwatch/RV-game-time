@@ -28,4 +28,5 @@ button {
 
 .reset {
   right: 10px;
+  display: none;
 }
