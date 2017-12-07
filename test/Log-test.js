@@ -1,4 +1,4 @@
-const { expect } = require('chai');
+
 const { assert } = require('chai');
 
 const Frogger = require('../lib/Frogger.js');
