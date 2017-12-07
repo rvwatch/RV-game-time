@@ -10,23 +10,25 @@ const Frogger = require('../lib/Frogger.js');
 
 
 
-// describe('Game', function() {
-//   let game;
-//   let canvas = {
-//     width: 600,
-//     height: 680
-//   }
-//   let context;
-//   let frogger;
+global.document = {
+  
+  getElementById: function (){},
+  querySelector: function () {
+    return {
+      removeAttribute: function() {},
+      setAttribute: function() {
+      }
+    };
+  }
+};
 
-//   beforeEach(() => {
-//     game = new Game(canvas, context);
-//     frogger = new Frogger(canvas);
-//   });
+const context = {};
+const canvas = {};
 
-//   it.only('should be a object', () => {
-//     assert.equal(typeof(game), 'object');
-//   });
+let game = new Game(canvas, context);
+describe('Game', ()=> {
 
-
-});
+  it('should be a function', () => {
+    // assert.equal(game).shouldBeAFunction();
+  })
+})
