@@ -203,7 +203,6 @@ describe('Frogger', function() {
   });
 
   it('should be able to tell when frogger is on LilyPad', () => {
-    
     let lily = new LilyPad(30, 60, 60, 60);
     let pads = [];
     pads.push(lily);
@@ -215,7 +214,7 @@ describe('Frogger', function() {
     assert.equal(frogger.isOnLilyPad(pads), true);
   });
 
-  it('should increse score and pad count when frogger lands on pad', () => {
+  it('should increase score and pad count when frogger lands on pad', () => {
     let cars = []
     let logs = []
     let lily = new LilyPad(30, 60, 60, 60);
