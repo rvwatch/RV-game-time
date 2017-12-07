@@ -1,10 +1,7 @@
-
 const { assert } = require('chai');
 
 const Frogger = require('../lib/Frogger.js');
 const Log = require('../lib/Log.js');
-
-
 
 describe('Log', function() {
   let frogger;
@@ -19,7 +16,7 @@ describe('Log', function() {
 
   it('should be a log object', () => {
     assert.equal(typeof(log), 'object');
-    assert.equal(log.type, 'log')
+    assert.equal(log.type, 'log');
   })
 
   it('should be able to move', () => {
@@ -27,6 +24,5 @@ describe('Log', function() {
     log.move();
     assert.equal(log.x, 480.5);
   })
-
 })
   
