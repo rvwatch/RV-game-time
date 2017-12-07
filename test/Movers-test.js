@@ -10,12 +10,18 @@ describe('Movers', function() {
   let movers;
   let array;
 
+  function moveMore(num, array) {
+      for(var i = 0; i < num; i++) {
+        movers.move(array);
+      };
+    };
+
   beforeEach(() => {
     movers = new Movers();
     log = new Log(120, 280, 80, 40, 1);
     let logs = [];
     logs.push(log);
-    car = new Car(280, 480, 40, 40, 1);
+    car = new Car(280, 480, 40, 40, -1);
     let cars = [];
     cars.push(car);
     array = logs.concat(cars);
@@ -28,13 +34,18 @@ describe('Movers', function() {
   it('should move the objects', () =>{
     assert.equal(log.x, 120);
     assert.equal(car.x, 280);
-    movers.move(array);
-    movers.move(array);
-    movers.move(array);
-    movers.move(array);
-    movers.move(array);
+    moveMore(5, array);
     assert.equal(log.x, 125);
-    assert.equal(car.x, 285);
+    assert.equal(car.x, 275);
+  })
+
+
+  it('should loop objects after they cross the canvas width', () =>{
+    assert.equal(log.x, 120);
+    assert.equal(car.x, 280);
+    moveMore(481, array);
+    assert.equal(log.x, -80);
+    assert.equal(car.x, 440);
   })
 
 });

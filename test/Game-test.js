@@ -21,7 +21,6 @@ global.document = {
 const context = {};
 const canvas = {};
 
-
 describe('Game', () => {
   let game;
   let frogger;
@@ -50,7 +49,3 @@ describe('Game', () => {
   })
 
 })
-
-
-
-
