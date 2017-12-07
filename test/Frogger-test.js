@@ -1,4 +1,3 @@
-const { expect } = require('chai');
 const { assert } = require('chai');
 
 const Frogger = require('../lib/Frogger.js');
@@ -92,6 +91,7 @@ describe('Frogger', function() {
     }
     assert.equal(frogger.x, 280);
     assert.equal(frogger.y, 560);
+    assert.equal(frogger.hitByCar(cars), false);
     frogger.move(event);
     frogger.move(event);
     assert.equal(frogger.x, 280);

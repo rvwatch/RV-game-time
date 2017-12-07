@@ -1,9 +1,6 @@
-
 const { assert } = require('chai');
 
 const Car = require('../lib/Car.js');
-
-
 
 describe('Car', function() {
   let car;
