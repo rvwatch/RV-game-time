@@ -25,10 +25,16 @@ global.document = {
 const context = {};
 const canvas = {};
 
-let game = new Game(canvas, context);
-describe('Game', ()=> {
+// let game = new Game(canvas, context);
+// describe('Game', ()=> {
 
-  it('should be a function', () => {
-    // assert.equal(game).shouldBeAFunction();
-  })
-})
+//   it('should be a function', () => {
+//     // assert.equal(game).shouldBeAFunction();
+//   });
+//   // create car / log / lily arrays ??
+//   it('should check if pads are empty, then full', () =>{
+//     assert.equal();
+//   });
+//   //
+
+// })
