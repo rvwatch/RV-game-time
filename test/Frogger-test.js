@@ -2,8 +2,7 @@ const { assert } = require('chai');
 
 const Frogger = require('../lib/Frogger.js');
 const Board = require('../lib/Board.js');
-const Car = require('../lib/Car.js');
-const Log = require('../lib/Log.js');
+const Obstacles = require('../lib/Obstacles.js');
 const LilyPad = require('../lib/LilyPad.js')
 const Movers = require('../lib/Movers.js');
 
@@ -40,11 +39,12 @@ describe('Frogger', function() {
     let event = {
       keyCode: 40
     }
+    frogger.y = 520;
     assert.equal(frogger.x, 280);
-    assert.equal(frogger.y, 560);
+    assert.equal(frogger.y, 520);
     frogger.move(event);
     assert.equal(frogger.x, 280);
-    assert.equal(frogger.y, 600);
+    assert.equal(frogger.y, 560);
   })
 
   it('should move left when we hit left arrow', () =>{
@@ -83,7 +83,7 @@ describe('Frogger', function() {
     })
 
   it('should know when it is hit by a car', () => {
-    let car = new Car(280, 480, 40, 40);
+    let car = new Obstacles(280, 480, 40, 40, 'red', 'car');
     let cars = []
     cars.push(car);
     let event = {
@@ -100,7 +100,7 @@ describe('Frogger', function() {
   })
 
   it('should know when it is safe', () => {
-    let car = new Car(480, 480, 40, 40);
+    let car = new Obstacles(480, 480, 40, 40, 'red', 'car');
     let cars = []
     cars.push(car);
     let event = {
@@ -116,7 +116,7 @@ describe('Frogger', function() {
   })
 
   it('should know when it hops on a log', () => {
-    let log = new Log(280, 280, 80, 40);
+    let log = new Obstacles(280, 280, 80, 40, 'red', 'log');
     let logs = []
     logs.push(log);
     let event = {
@@ -131,7 +131,7 @@ describe('Frogger', function() {
   })
 
   it('should know when it hops in the river', () => {
-    let log = new Log(120, 280, 80, 40);
+    let log = new Obstacles(120, 280, 80, 40, 'red', 'log');
     let logs = []
     logs.push(log);
     let event = {
@@ -146,12 +146,12 @@ describe('Frogger', function() {
   })
 
   it('should die if it is hit by a car', () => {
-    let log = new Log(120, 280, 80, 40);
+    let log = new Obstacles(120, 280, 80, 40, 'red', 'log');
     let logs = [];
     logs.push(log);
-    let car = new Car(280, 480, 40, 40);
+    let car = new Obstacles(280, 480, 40, 40, 'red', 'car');
     let cars = [];
-    let lily = new LilyPad(30, 60, 60, 60);
+    let lily = new LilyPad(30, 60, 60, 60, 'green', 'lilypad');
     let pads = [];
     cars.push(car);
     let event = {
@@ -171,12 +171,12 @@ describe('Frogger', function() {
   })
 
   it('should die if it hops in the river', () => {
-    let car = new Car(480, 480, 40, 40);
+    let car = new Obstacles(480, 480, 40, 40, 'red', 'car');
     let cars = []
     cars.push(car);
-    let log = new Log(120, 280, 80, 40);
+    let log = new Obstacles(120, 280, 80, 40, 'red', 'log');
     let logs = []
-    let lily = new LilyPad(30, 60, 60, 60);
+    let lily = new LilyPad(30, 60, 60, 60, 'green', 'lilypad');
     let pads = [];
     logs.push(log);
     let event = {
@@ -203,7 +203,7 @@ describe('Frogger', function() {
   });
 
   it('should be able to tell when frogger is on LilyPad', () => {
-    let lily = new LilyPad(30, 60, 60, 60);
+    let lily = new LilyPad(30, 60, 60, 60, 'green', 'lilypad');
     let pads = [];
     pads.push(lily);
     frogger.x = 40;
@@ -213,22 +213,6 @@ describe('Frogger', function() {
     frogger.y = 100;
     assert.equal(frogger.isOnLilyPad(pads), true);
   });
-
-  it('should increase score and pad count when frogger lands on pad', () => {
-    let cars = []
-    let logs = []
-    let lily = new LilyPad(30, 60, 60, 60);
-    let pads = [];
-    pads.push(lily);
-    assert.equal(frogger.pads, 0);
-    assert.equal(frogger.score.counter, 0);
-    frogger.x = 40;
-    frogger.y = 100;
-    assert.equal(frogger.isOnLilyPad(pads), true);
-    frogger.collisionDetection(logs, cars, pads);
-    assert.equal(frogger.pads, 1);
-    assert.equal(frogger.score.counter, 500);
-  })
 
 })
   
