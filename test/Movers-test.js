@@ -1,8 +1,7 @@
 const { assert } = require('chai');
 
 const Movers = require('../lib/Movers.js');
-const Log = require('../lib/Log.js');
-const Car = require('../lib/Car.js');
+const Obstacles = require('../lib/Obstacles.js');
 
 describe('Movers', function() {
   let log;
@@ -18,10 +17,10 @@ describe('Movers', function() {
 
   beforeEach(() => {
     movers = new Movers();
-    log = new Log(120, 280, 80, 40, 1);
+    log = new Obstacles(120, 280, 80, 40, 1, 'red', 'log');
     let logs = [];
     logs.push(log);
-    car = new Car(280, 480, 40, 40, -1);
+    car = new Obstacles(280, 480, 40, 40, -1, 'red', 'car');
     let cars = [];
     cars.push(car);
     array = logs.concat(cars);
