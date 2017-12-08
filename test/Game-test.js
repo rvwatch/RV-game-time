@@ -35,6 +35,10 @@ describe('Game', () => {
   it('should be a function', () => {
     assert.equal(typeof(game), 'object');
   })
+
+  it('should build out log array' => {
+    
+  })
   
   it('should check to see if the lilypads are full and increase score and level', () => {
     let lily = new LilyPad(30, 60, 60, 60);
@@ -47,5 +51,7 @@ describe('Game', () => {
     assert.equal(frogger.level, 2);
     assert.equal(frogger.score, 1000);
   })
+
+
 
 })
